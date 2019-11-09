@@ -1,5 +1,6 @@
 import uvicorn
 from starlette.applications import Starlette
+from starlette.middleware import Middleware
 from starlette.requests import Request
 from starlette.responses import PlainTextResponse
 from starlette.routing import Route
@@ -20,10 +21,9 @@ APP = Starlette(
     routes=[
         Route("/", home, methods=["GET"]),
         Route("/security_risk", security_risk, methods=["GET"]),
-    ]
+    ],
+    middleware=[Middleware(EarlyDataMiddleware, {"deny_all": False}),],
 )
-
-APP.add_middleware(EarlyDataMiddleware, deny_all=False)
 
 if __name__ == "__main__":
     uvicorn.run(APP, host="0.0.0.0", port=8080)
