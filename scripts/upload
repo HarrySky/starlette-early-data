@@ -8,25 +8,9 @@ cd "${DIR}/.."
 find starlette_early_data -type f -name "*.py[co]" -delete
 find starlette_early_data -type d -name __pycache__ -delete
 
-if [ -d 'dist' ] ; then
-    rm -r dist
-fi
-if [ -d 'build' ] ; then
-    rm -r build
-fi
-if [ -d 'starlette_early_data.egg-info' ] ; then
-    rm -r starlette_early_data.egg-info
-fi
+rm -rf dist build starlette_early_data.egg-info
 
 python3 setup.py sdist bdist_wheel
 twine upload dist/*
 
-if [ -d 'dist' ] ; then
-    rm -r dist
-fi
-if [ -d 'build' ] ; then
-    rm -r build
-fi
-if [ -d 'starlette_early_data.egg-info' ] ; then
-    rm -r starlette_early_data.egg-info
-fi
+rm -rf dist build starlette_early_data.egg-info
