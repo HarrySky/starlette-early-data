@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+# Go to repository root directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "${DIR}/.."
+
+find starlette_early_data -type f -name "*.py[co]" -delete
+find starlette_early_data -type d -name __pycache__ -delete
+
+if [ -d 'dist' ] ; then
+    rm -r dist
+fi
+if [ -d 'build' ] ; then
+    rm -r build
+fi
+if [ -d 'starlette_early_data.egg-info' ] ; then
+    rm -r starlette_early_data.egg-info
+fi
+
+python3 setup.py sdist bdist_wheel
+twine upload dist/*
+
+if [ -d 'dist' ] ; then
+    rm -r dist
+fi
+if [ -d 'build' ] ; then
+    rm -r build
+fi
+if [ -d 'starlette_early_data.egg-info' ] ; then
+    rm -r starlette_early_data.egg-info
+fi
