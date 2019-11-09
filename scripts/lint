@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+mypy starlette_early_data --ignore-missing-imports --disallow-untyped-defs
+autoflake --in-place --recursive starlette_early_data test.py setup.py
+black starlette_early_data test.py setup.py
+isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --apply starlette_early_data test.py setup.py
+mypy starlette_early_data --ignore-missing-imports --disallow-untyped-defs

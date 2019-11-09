@@ -3,3 +3,4 @@ __pycache__
 starlette_early_data.egg-info
 dist
 build
+.mypy_cache

@@ -4,7 +4,7 @@ from starlette import status
 from starlette.applications import Starlette
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
-from starlette.responses import Response, PlainTextResponse
+from starlette.responses import PlainTextResponse, Response
 
 TOO_EARLY = PlainTextResponse("Too Early", status.HTTP_425_TOO_EARLY)
 
@@ -28,7 +28,7 @@ class EarlyDataMiddleware(BaseHTTPMiddleware):
 
 
 def deny_early_data(endpoint: Callable) -> Callable:
-    async def endpoint_wrapper(request: Request):
+    async def endpoint_wrapper(request: Request) -> Response:
         if request.state.early_data:
             return TOO_EARLY
 
