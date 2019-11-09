@@ -2,6 +2,10 @@
 
 Middleware and decorator for processing TLSv1.3 early data requests in Starlette
 
+[Package on PyPI](https://pypi.org/project/starlette-early-data/)
+
+Install: `pip install starlette-early-data`
+
 ## What this package can do:
 - Detect if request is early data and mark it (`request.state.early_data = True`)
 - Deny all early data requests (pass `deny_all=True` to `add_middleware`)
