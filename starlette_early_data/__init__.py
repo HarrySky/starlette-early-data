@@ -1,12 +1,12 @@
 from typing import Callable
 
+from starlette import status
 from starlette.applications import Starlette
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response, PlainTextResponse
 
-# As soon as Starlette publish new version - use status.HTTP_425_TOO_EARLY
-TOO_EARLY = PlainTextResponse("Too Early", 425)
+TOO_EARLY = PlainTextResponse("Too Early", status.HTTP_425_TOO_EARLY)
 
 
 class EarlyDataMiddleware(BaseHTTPMiddleware):
