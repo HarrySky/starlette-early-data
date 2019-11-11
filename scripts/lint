@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Go to repository root directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "${DIR}/.."
+
 mypy starlette_early_data --ignore-missing-imports --disallow-untyped-defs
 autoflake --in-place --recursive starlette_early_data test.py setup.py
 black starlette_early_data test.py setup.py

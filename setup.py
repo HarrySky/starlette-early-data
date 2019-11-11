@@ -38,8 +38,12 @@ setup(
     data_files=[("", ["LICENSE"])],
     include_package_data=True,
     install_requires=["starlette>=0.12.11"],
+    extras_require={
+        "test": ["asynctest", "httpx"],
+        "lint": ["mypy", "autoflake", "black", "isort"],
+    },
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "License :: Public Domain",

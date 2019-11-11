@@ -1,6 +1,7 @@
-__pycache__
-.vscode
-starlette_early_data.egg-info
-dist
-build
-.mypy_cache
+__pycache__/
+.vscode/
+starlette_early_data.egg-info/
+dist/
+build/
+.mypy_cache/
+.coverage
