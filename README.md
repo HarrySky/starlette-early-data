@@ -2,7 +2,8 @@
 
 Middleware and decorator for processing TLSv1.3 early data requests in Starlette
 
-<a href="https://pypi.org/project/starlette-early-data/"><img alt="PyPI" src="https://img.shields.io/pypi/v/starlette-early-data"></a>
+[![PyPI: starlette-early-data](https://img.shields.io/pypi/v/starlette-early-data)](https://pypi.org/project/starlette-early-data/)
+[![Code Style: Black](https://img.shields.io/badge/code_style-black-000000.svg)](https://github.com/ambv/black)
 
 Install: `pip install starlette-early-data`
 
