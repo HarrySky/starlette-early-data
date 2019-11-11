@@ -11,7 +11,7 @@ Install: `pip install starlette-early-data`
 - Deny all early data requests (pass `deny_all=True` to `add_middleware`)
 - Deny early data requests to specific endpoints (use decorator `@deny_early_data`)
 
-Example (`test.py`):
+Example:
 
 ```python
 import uvicorn
@@ -41,6 +41,6 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
 ```
 
-Send request to `http://127.0.0.1:8080/security_risk` with header `Early-Data=1` and you will get 425.
+Send request to `http://127.0.0.1:8080/security_risk` with header `Early-Data=1` and you will get `425 Early Data`.
 
-Request to `http://127.0.0.1:8080/` with the same header will only return 425 if you pass `deny_all=True` to `app.add_middleware(...)`
+Request to `http://127.0.0.1:8080/` with the same header will only return `425 Early Data` if you pass `deny_all=True` to `app.add_middleware(...)`
