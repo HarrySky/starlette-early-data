@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm -rf venv
+python3.7 -m virtualenv venv
+
+./venv/bin/pip install --no-cache-dir fastapi
+# From 0.13 Middleware signature changed
+./venv/bin/pip install --no-cache-dir "starlette>=0.13,<1.0"
+./venv/bin/pip install --no-cache-dir asynctest httpx coverage \
+    mypy autoflake black isort

@@ -1,12 +1,21 @@
 #!/bin/bash
-set -e
 
-# Go to repository root directory
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "${DIR}/.."
+echo -e "\033[0;32mRemoving Unused Imports (autoflake):\033[0m"
+echo
+./venv/bin/autoflake --in-place --recursive starlette_early_data.py test.py setup.py
+echo "----------"
 
-mypy starlette_early_data --ignore-missing-imports --disallow-untyped-defs
-autoflake --in-place --recursive starlette_early_data test.py setup.py
-black starlette_early_data test.py setup.py
-isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --apply starlette_early_data test.py setup.py
-mypy starlette_early_data --ignore-missing-imports --disallow-untyped-defs
+echo -e "\033[0;32mLinting (black):\033[0m"
+echo
+./venv/bin/black --target-version=py37 starlette_early_data.py test.py setup.py
+echo "----------"
+
+echo -e "\033[0;32mSorting Imports (isort):\033[0m"
+echo
+./venv/bin/isort --project=starlette_early_data starlette_early_data.py test.py setup.py
+echo "----------"
+
+echo -e "\033[0;32mStatic Types Check After Linting (mypy):\033[0m"
+echo
+./venv/bin/mypy starlette_early_data.py --show-error-codes
+echo "----------"

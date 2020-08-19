@@ -1,17 +1,13 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import os
 import re
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 
-def get_version(package):
+def get_version():
     """
-    Return package version as listed in `__version__` in `__version__.py`.
+    Return package version as listed in `__version__`.
     """
-    with open(os.path.join(package, "__version__.py")) as f:
+    with open("starlette_early_data.py") as f:
         return re.search("__version__ = ['\"]([^'\"]+)['\"]", f.read()).group(1)
 
 
@@ -26,7 +22,7 @@ def get_long_description():
 setup(
     name="starlette-early-data",
     python_requires=">=3.6",
-    version=get_version("starlette_early_data"),
+    version=get_version(),
     url="https://github.com/HarrySky/starlette-early-data",
     license="Unlicense",
     description="Middleware and decorator for processing TLSv1.3 early data requests in Starlette",
@@ -34,14 +30,11 @@ setup(
     long_description_content_type="text/markdown",
     author="Igor Nehoroshev",
     author_email="mail@neigor.me",
-    packages=["starlette_early_data"],
+    py_modules=["starlette_early_data"],
     data_files=[("", ["LICENSE"])],
     include_package_data=True,
+    # Since 0.12.11 we have starlette.status.HTTP_425_TOO_EARLY
     install_requires=["starlette>=0.12.11"],
-    extras_require={
-        "test": ["asynctest", "httpx"],
-        "lint": ["mypy", "autoflake", "black", "isort"],
-    },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",

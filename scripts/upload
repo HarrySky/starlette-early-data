@@ -1,12 +1,9 @@
 #!/bin/bash
 set -e
 
-# Go to repository root directory
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "${DIR}/.."
 
-find starlette_early_data -type f -name "*.py[co]" -delete
-find starlette_early_data -type d -name __pycache__ -delete
+find ./ -type f -name "*.py[co]" -delete
+find ./ -type d -name __pycache__ -delete
 
 rm -rf dist build starlette_early_data.egg-info
 

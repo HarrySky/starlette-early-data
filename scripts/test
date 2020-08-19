@@ -1,8 +1,4 @@
 #!/bin/bash
-set -e
 
-# Go to repository root directory
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "${DIR}/.."
-
-coverage run --source=starlette_early_data -m test && coverage report -m
+./venv/bin/coverage run --source=starlette_early_data -m test
+./venv/bin/coverage report -m
